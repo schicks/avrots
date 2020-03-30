@@ -1,23 +1,12 @@
-import { Field } from './avro.domain';
-declare type String = Field & {
-    _ts: string;
-};
-declare const String: (name: string) => String;
-declare type Null = Field & {
-    _ts: null;
-};
-declare const Null: (name: string) => Null;
-declare type Boolean = Field & {
-    _ts: boolean;
-};
-declare const Boolean: (name: string) => Boolean;
-declare type Int = Field & {
-    _ts: number;
-};
-declare const Int: (name: string) => Int;
-declare type Long = Field & {
-    _ts: number;
-};
-declare const Long: (name: string) => Long;
-declare type Primitive = Field & (String | Null | Boolean | Int | Long);
-export { String, Null, Boolean, Int, Long, Primitive };
+import * as Avro from './avro.domain';
+declare type String = Avro.String;
+declare const String: () => Avro.String;
+declare type Null = Avro.Null;
+declare const Null: () => Avro.Null;
+declare type Boolean = Avro.Boolean;
+declare const Boolean: () => Avro.Boolean;
+declare type Int = Avro.Int;
+declare const Int: () => Avro.Int;
+declare type Long = Avro.Long;
+declare const Long: () => Avro.Long;
+export { String, Null, Boolean, Int, Long, };

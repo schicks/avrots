@@ -1,4 +1,4 @@
 declare type AsTypescript<T extends {
-    _ts: any;
+    _ts: unknown;
 }> = T['_ts'];
 export { AsTypescript };

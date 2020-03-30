@@ -1,27 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const String = (name) => ({
-    name,
-    type: 'string'
-});
+const String = () => 'string';
 exports.String = String;
-const Null = (name) => ({
-    name,
-    type: 'null'
-});
+const Null = () => 'null';
 exports.Null = Null;
-const Boolean = (name) => ({
-    name,
-    type: 'boolean'
-});
+const Boolean = () => 'boolean';
 exports.Boolean = Boolean;
-const Int = (name) => ({
-    name,
-    type: 'int'
-});
+const Int = () => 'int';
 exports.Int = Int;
-const Long = (name) => ({
-    name,
-    type: 'long'
-});
+const Long = () => 'long';
 exports.Long = Long;

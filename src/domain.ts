@@ -1,5 +1,5 @@
 
 
-type AsTypescript<T extends { _ts: any }> = T['_ts']
+type AsTypescript<T extends { _ts: unknown }> = T['_ts']
 
 export { AsTypescript }

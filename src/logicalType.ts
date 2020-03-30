@@ -1,24 +1,22 @@
 import * as Avro from './avro.domain'
-import { Primitive } from './primitives'
+import { String } from './primitives'
+import { AsTypescript } from './domain'
 
-type LogicalType<T extends Avro.Field> = Avro.Field & {
+type LogicalType<T extends Avro.Primitive> = Avro.LogicalType & {
     type: {
         type: T,
         logicalType: Avro.LogicalType
     },
-    _ts: T
+    _ts: T['_ts']
 }
-const LogicalType = <T extends Primitive>(
-    name: string,
+const LogicalType = <T extends Avro.Primitive>(
     type: T,
-    logicalType: Avro.LogicalType,
+    logicalType: Avro.LogicalTypeLabel,
 ): LogicalType<T> => ({
-    name,
-    type: {
-        type,
-        logicalType
-    }
-} as LogicalType<T>)
+    type,
+    logicalType
+} as unknown as LogicalType<T>)
+
 
 export {
     LogicalType
