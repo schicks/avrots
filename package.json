@@ -1,0 +1,26 @@
+{
+  "name": "avrots",
+  "version": "0.0.1",
+  "description": "A DSL for simultaneously constructing an avro schema and the corresponding typescript type. Inspired by pelotom/runtypes and joewood/avro-typescript.",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "jest",
+    "build": "tsc",
+    "typecheck": "tsc --noEmit",
+    "precommit": "npm test && npm run build"
+  },
+  "keywords": [
+    "avro",
+    "typescript"
+  ],
+  "author": "Sam Schick",
+  "license": "MIT",
+  "jest": {
+    "preset": "ts-jest"
+  },
+  "devDependencies": {
+    "jest": "^25.2.4",
+    "ts-jest": "^25.3.0",
+    "typescript": "^3.8.3"
+  }
+}
