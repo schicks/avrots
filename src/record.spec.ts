@@ -1,8 +1,6 @@
 import { AsTypescript } from './domain'
-import { Union } from './union'
 import { Record } from './record'
-import { String, Long, Boolean } from './primitives'
-import { LogicalType } from './logicalType'
+import { String, Long } from './primitives'
 
 
 // primitives

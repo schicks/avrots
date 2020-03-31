@@ -1,6 +1,7 @@
-import { String, Null, Boolean, Int, Long } from './primitives';
-import { LogicalType } from './logicalType';
-import { Union } from './union';
-import { Record } from './record';
+import { Array } from './array';
 import { AsTypescript } from './domain';
-export { AsTypescript, String, Null, Boolean, Int, Long, LogicalType, Union, Record };
+import { LogicalType } from './logicalType';
+import { Record } from './record';
+import { String, Null, Boolean, Int, Long } from './primitives';
+import { Union } from './union';
+export { Array, AsTypescript, Boolean, Int, LogicalType, Long, Null, Record, String, Union, };

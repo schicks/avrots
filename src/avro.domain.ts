@@ -3,26 +3,23 @@ type LogicalTypeLabel = string & { _type: "logicalTypeLabel" }
 
 
 type Type =
-| Primitive
-| LogicalType
-| RecordType
-| NamedType
-| UnionType
+    | ArrayType
+    | LogicalType
+    | Primitive
+    | RecordType
+    | UnionType
 
-
-type NamedType = string & { _type: "namedType" } & {_ts: unknown}
-
-type String = "string" & { _ts: string }
-type Null = "null" & { _ts: null }
 type Boolean = "boolean" & { _ts: boolean }
 type Int = "int" & { _ts: number }
 type Long = "long" & { _ts: number }
-type Primitive =  
-    | String
-    | Null
+type Null = "null" & { _ts: null }
+type String = "string" & { _ts: string }
+type Primitive =
     | Boolean
     | Int
     | Long
+    | Null
+    | String
 
 type LogicalType = {
     type: Type,
@@ -35,6 +32,11 @@ type RecordType = {
     fields: Field[]
 } & { _ts: unknown }
 
+type ArrayType = {
+    type: "array",
+    items: Type
+} & { _ts: unknown }
+
 type UnionType = Type[] & { _ts: unknown }
 
 type Field = {
@@ -45,17 +47,18 @@ type Field = {
 type Schema = RecordType
 
 export {
-    Type,
+    ArrayType,
+    Boolean,
     Field,
-    Schema,
-    UnionType,
+    Int,
     LogicalType,
     LogicalTypeLabel,
+    Long,
+    Null,
     Primitive,
     RecordType,
+    Schema,
     String,
-    Null,
-    Boolean,
-    Int,
-    Long
+    Type,
+    UnionType,
 }
