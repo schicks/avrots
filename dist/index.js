@@ -10,3 +10,5 @@ const logicalType_1 = require("./logicalType");
 exports.LogicalType = logicalType_1.LogicalType;
 const union_1 = require("./union");
 exports.Union = union_1.Union;
+const record_1 = require("./record");
+exports.Record = record_1.Record;

@@ -1,6 +1,7 @@
 import { String, Null, Boolean, Int, Long } from './primitives'
 import { LogicalType } from './logicalType'
 import { Union } from './union'
+import { Record } from './record'
 import { AsTypescript } from './domain'
 
 export {
@@ -11,5 +12,6 @@ export {
     Int,
     Long,
     LogicalType,
-    Union
+    Union,
+    Record
 }
