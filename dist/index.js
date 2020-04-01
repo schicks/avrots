@@ -6,6 +6,7 @@ const logicalType_1 = require("./logicalType");
 exports.LogicalType = logicalType_1.LogicalType;
 const record_1 = require("./record");
 exports.Record = record_1.Record;
+exports.Field = record_1.Field;
 const primitives_1 = require("./primitives");
 exports.String = primitives_1.String;
 exports.Null = primitives_1.Null;

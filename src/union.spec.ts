@@ -37,3 +37,9 @@ _ = () => {
     const _actualIsExpected: ExpectedType = null as ActualType
     const _expectedIsActual: ActualType = null as ExpectedType
 }
+
+describe('Union construction', () => {
+    test('should construct a valid avro union', () => {
+        expect(Union([String(), Boolean()])).toEqual(['string', 'boolean'])
+    })
+})

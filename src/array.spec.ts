@@ -1,6 +1,6 @@
 import { AsTypescript } from './domain'
 import { Array } from './array'
-import { Record } from './record'
+import { Record, Field } from './record'
 import { Union } from './union'
 import { String, Long } from './primitives'
 
@@ -36,8 +36,8 @@ _ = () => {
         Record(
             'person',
             {
-                name: String(),
-                age: Long()
+                name: Field(String()),
+                age: Field(Long())
             }
         )
     )
@@ -52,7 +52,7 @@ _ = () => {
     const instance = Array(
         Union([
             String(),
-            Array(Record('person', { name: String(), age: Long() }))
+            Array(Record('person', { name: Field(String()), age: Field(Long()) }))
         ])
     )
     type ActualType = AsTypescript<typeof instance>
@@ -60,3 +60,9 @@ _ = () => {
     const _actualIsExpected: ExpectedType = null as ActualType
     const _expectedIsActual: ActualType = null as ExpectedType
 }
+
+describe('Array construction', () => {
+    test('should construct a valid avro array type', () => {
+        expect(Array(String())).toEqual({type: "array", items: 'string'})
+    })
+})

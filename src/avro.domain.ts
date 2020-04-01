@@ -9,6 +9,16 @@ type Type =
     | RecordType
     | UnionType
 
+type RequiredType =
+    | ArrayType
+    | LogicalType
+    | RecordType
+    | UnionType
+    | Boolean
+    | Int
+    | Long
+    | String
+
 type Boolean = "boolean" & { _ts: boolean }
 type Int = "int" & { _ts: number }
 type Long = "long" & { _ts: number }
@@ -29,7 +39,7 @@ type LogicalType = {
 type RecordType = {
     type: "record",
     name: string,
-    fields: Field[]
+    fields: Field<RequiredType>[]
 } & { _ts: unknown }
 
 type ArrayType = {
@@ -39,9 +49,20 @@ type ArrayType = {
 
 type UnionType = Type[] & { _ts: unknown }
 
-type Field = {
-    name: string,
-    type: Type,
+type Field<T extends RequiredType> = {
+    type: T,
+    doc?: string
+    _ts: T['_ts']
+} | {
+    type: T,
+    doc?: string,
+    default?: T['_ts'],
+    _ts: T['_ts']
+} | {
+    type: [T | Null][] & { _ts: T['_ts'] | null },
+    doc?: string,
+    default?: null,
+    _ts: T['_ts'] | null
 }
 
 type Schema = RecordType
@@ -57,8 +78,9 @@ export {
     Null,
     Primitive,
     RecordType,
+    RequiredType,
     Schema,
     String,
     Type,
-    UnionType,
+    UnionType
 }
