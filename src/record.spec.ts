@@ -11,9 +11,8 @@ let _ = () => {
     )
     type ActualType = AsTypescript<typeof instance>
     type ExpectedType = { name: string, age: number }
-    const _actualIsExpected: ExpectedType = null as ActualType
-    const _expectedIsActual: ActualType = null as ExpectedType
-    const person: ExpectedType = {name: null, age: undefined}
+    const _actualIsExpected: ExpectedType = null as unknown as ActualType
+    const _expectedIsActual: ActualType = null as unknown as ExpectedType
 }
 
 // other records
@@ -37,8 +36,20 @@ _ = () => {
             age: number
         }
     }
-    const _actualIsExpected: ExpectedType = null as ActualType
-    const _expectedIsActual: ActualType = null as ExpectedType
+    const _actualIsExpected: ExpectedType = null as unknown as ActualType
+    const _expectedIsActual: ActualType = null as unknown as ExpectedType
+}
+
+// defaulted and nullable fields
+_ = () => {
+    const instance = Record(
+        'person',
+        { name: Field({type: String(), default: 'hello!'}), age: Field({type: Long(), default: null}) }
+    )
+    type ActualType = AsTypescript<typeof instance>
+    type ExpectedType = { name: string | null | undefined, age: number | null | undefined } // TODO make optional properties optional, not just nullable
+    const _actualIsExpected: ExpectedType = null as unknown as ActualType
+    const _expectedIsActual: ActualType = null as unknown as ExpectedType
 }
 
 describe('Field construction', () => {

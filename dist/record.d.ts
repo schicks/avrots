@@ -1,18 +1,26 @@
 import * as Avro from './avro.domain';
-declare type Field<T extends Avro.RequiredType = Avro.RequiredType> = Avro.Field<T>;
-declare const Field: <T extends Avro.RequiredType>(props: T | {
+declare type RequiredField<T extends Avro.RequiredType> = {
     type: T;
-    doc?: string | undefined;
-} | {
-    type: Avro.Null | T;
-    doc?: string | undefined;
-    default?: T["_ts"] | null | undefined;
-}) => Avro.Field<T>;
+    doc?: string;
+};
+declare type DefaultedField<T extends Avro.RequiredType> = {
+    type: T;
+    doc?: string;
+    default: T['_ts'];
+};
+declare type NullableField<T extends Avro.RequiredType> = {
+    type: T;
+    doc?: string;
+    default: null;
+};
+declare function Field<T extends Avro.RequiredType>(props: RequiredField<T> | T): Avro.RequiredField<T>;
+declare function Field<T extends Avro.RequiredType>(props: DefaultedField<T>): Avro.DefaultedField<T>;
+declare function Field<T extends Avro.RequiredType>(props: NullableField<T>): Avro.NullableField<T>;
 declare type Record<O extends {
-    [key: string]: Field;
+    [key: string]: Avro.Field<Avro.RequiredType>;
 }> = Avro.RecordType & {
     _ts: {
-        [key in keyof O]: O[key]['type']['_ts'];
+        [key in keyof O]: O[key]['_ts'];
     };
 };
 declare const Record: <O extends {

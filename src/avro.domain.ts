@@ -49,21 +49,27 @@ type ArrayType = {
 
 type UnionType = Type[] & { _ts: unknown }
 
-type Field<T extends RequiredType> = {
-    type: T,
-    doc?: string
-    _ts: T['_ts']
-} | {
+type RequiredField<T extends RequiredType> = {
     type: T,
     doc?: string,
-    default?: T['_ts'],
     _ts: T['_ts']
-} | {
-    type: [T | Null][] & { _ts: T['_ts'] | null },
-    doc?: string,
-    default?: null,
-    _ts: T['_ts'] | null
 }
+
+type DefaultedField<T extends RequiredType> = {
+    type: T,
+    doc?: string,
+    default: T['_ts'],
+    _ts: T['_ts'] | null | undefined
+}
+
+type NullableField<T extends RequiredType> = {
+    type: T,
+    doc?: string,
+    default: null,
+    _ts: T['_ts'] | null | undefined
+}
+
+type Field<T extends RequiredType> = RequiredField<T> | NullableField<T> | DefaultedField<T>
 
 type Schema = RecordType
 
@@ -71,6 +77,9 @@ export {
     ArrayType,
     Boolean,
     Field,
+    RequiredField,
+    NullableField,
+    DefaultedField,
     Int,
     LogicalType,
     LogicalTypeLabel,

@@ -41,22 +41,23 @@ declare type ArrayType = {
 declare type UnionType = Type[] & {
     _ts: unknown;
 };
-declare type Field<T extends RequiredType> = {
+declare type RequiredField<T extends RequiredType> = {
     type: T;
     doc?: string;
     _ts: T['_ts'];
-} | {
-    type: T;
-    doc?: string;
-    default?: T['_ts'];
-    _ts: T['_ts'];
-} | {
-    type: [T | Null][] & {
-        _ts: T['_ts'] | null;
-    };
-    doc?: string;
-    default?: null;
-    _ts: T['_ts'] | null;
 };
+declare type DefaultedField<T extends RequiredType> = {
+    type: T;
+    doc?: string;
+    default: T['_ts'];
+    _ts: T['_ts'] | null | undefined;
+};
+declare type NullableField<T extends RequiredType> = {
+    type: T;
+    doc?: string;
+    default: null;
+    _ts: T['_ts'] | null | undefined;
+};
+declare type Field<T extends RequiredType> = RequiredField<T> | NullableField<T> | DefaultedField<T>;
 declare type Schema = RecordType;
-export { ArrayType, Boolean, Field, Int, LogicalType, LogicalTypeLabel, Long, Null, Primitive, RecordType, RequiredType, Schema, String, Type, UnionType };
+export { ArrayType, Boolean, Field, RequiredField, NullableField, DefaultedField, Int, LogicalType, LogicalTypeLabel, Long, Null, Primitive, RecordType, RequiredType, Schema, String, Type, UnionType };

@@ -12,8 +12,8 @@ let _ = () => {
     )
     type ActualType = AsTypescript<typeof instance>
     type ExpectedType = string[]
-    const _actualIsExpected: ExpectedType = null as ActualType
-    const _expectedIsActual: ActualType = null as ExpectedType
+    const _actualIsExpected: ExpectedType = null as unknown as ActualType
+    const _expectedIsActual: ActualType = null as unknown as ExpectedType
 }
 
 // unions
@@ -26,8 +26,8 @@ _ = () => {
     )
     type ActualType = AsTypescript<typeof instance>
     type ExpectedType = (string | number)[]
-    const _actualIsExpected: ExpectedType = null as ActualType
-    const _expectedIsActual: ActualType = null as ExpectedType
+    const _actualIsExpected: ExpectedType = null as unknown as ActualType
+    const _expectedIsActual: ActualType = null as unknown as ExpectedType
 }
 
 // records
@@ -43,8 +43,8 @@ _ = () => {
     )
     type ActualType = AsTypescript<typeof instance>
     type ExpectedType = ({ name: string, age: number })[]
-    const _actualIsExpected: ExpectedType = null as ActualType
-    const _expectedIsActual: ActualType = null as ExpectedType
+    const _actualIsExpected: ExpectedType = null as unknown as ActualType
+    const _expectedIsActual: ActualType = null as unknown as ExpectedType
 }
 
 // other arrays
@@ -57,8 +57,8 @@ _ = () => {
     )
     type ActualType = AsTypescript<typeof instance>
     type ExpectedType = (string | { name: string, age: number }[])[]
-    const _actualIsExpected: ExpectedType = null as ActualType
-    const _expectedIsActual: ActualType = null as ExpectedType
+    const _actualIsExpected: ExpectedType = null as unknown as ActualType
+    const _expectedIsActual: ActualType = null as unknown as ExpectedType
 }
 
 describe('Array construction', () => {

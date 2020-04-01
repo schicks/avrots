@@ -9,8 +9,8 @@ let _ = () => {
     const instance = Union([String(), Long()])
     type ActualType = AsTypescript<typeof instance>
     type ExpectedType = string | number
-    const _actualIsExpected: ExpectedType = null as ActualType
-    const _expectedIsActual: ActualType = null as ExpectedType
+    const _actualIsExpected: ExpectedType = null as unknown as ActualType
+    const _expectedIsActual: ActualType = null as unknown as ExpectedType
 }
 
 
@@ -22,8 +22,8 @@ _ = () => {
     ])
     type ActualType = AsTypescript<typeof instance>
     type ExpectedType = string | number
-    const _actualIsExpected: ExpectedType = null as ActualType
-    const _expectedIsActual: ActualType = null as ExpectedType
+    const _actualIsExpected: ExpectedType = null as unknown as ActualType
+    const _expectedIsActual: ActualType = null as unknown as ExpectedType
 }
 
 // other unions
@@ -34,8 +34,8 @@ _ = () => {
     ])
     type ActualType = AsTypescript<typeof instance>
     type ExpectedType = string | number | boolean
-    const _actualIsExpected: ExpectedType = null as ActualType
-    const _expectedIsActual: ActualType = null as ExpectedType
+    const _actualIsExpected: ExpectedType = null as unknown as ActualType
+    const _expectedIsActual: ActualType = null as unknown as ExpectedType
 }
 
 describe('Union construction', () => {
