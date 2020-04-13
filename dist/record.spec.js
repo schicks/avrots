@@ -41,4 +41,11 @@ describe('Field construction', () => {
         });
         expect(defaultedField).toHaveProperty('default', defaultString);
     });
+    test('Nullable fields should append null to the type', () => {
+        const defaultedField = record_1.Field({
+            type: primitives_1.String(),
+            default: null
+        });
+        expect(defaultedField.type).toContain('null');
+    });
 });

@@ -1,4 +1,6 @@
 import * as Avro from './avro.domain'
+import { Union } from './union'
+import { Null } from './primitives'
 
 type RequiredField<T extends Avro.RequiredType> = {
     type: T,
@@ -23,11 +25,14 @@ type UnbrandedField<T extends Avro.RequiredType> = RequiredField<T> | NullableFi
 function Field<T extends Avro.RequiredType>(props: RequiredField<T> | T): Avro.RequiredField<T>
 function Field<T extends Avro.RequiredType>(props: DefaultedField<T>): Avro.DefaultedField<T>
 function Field<T extends Avro.RequiredType>(props: NullableField<T>): Avro.NullableField<T>
-function Field<T extends Avro.RequiredType>(props: UnbrandedField<T> | T): Avro.Field<T> {
-    return ('doc' in props || 'default' in props
-        ? props
-        : { type: props }
-    ) as Avro.Field<T>
+function Field<T extends Avro.RequiredType>(props: UnbrandedField<T> | T) {
+    if (typeof props === 'string' || !('doc' in props || 'default' in props)) return { type: props }
+    else if ('default' in props && props.default === null) {
+        return {
+            ...props, 
+            type: Union([Null(), props.type])
+        }
+    } else return props
 }
 
 type Record<O extends { [key: string]: Avro.Field<Avro.RequiredType> }> = Avro.RecordType & {

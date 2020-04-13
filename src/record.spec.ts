@@ -44,7 +44,7 @@ _ = () => {
 _ = () => {
     const instance = Record(
         'person',
-        { name: Field({type: String(), default: 'hello!'}), age: Field({type: Long(), default: null}) }
+        { name: Field({ type: String(), default: 'hello!' }), age: Field({ type: Long(), default: null }) }
     )
     type ActualType = AsTypescript<typeof instance>
     type ExpectedType = { name: string | null | undefined, age: number | null | undefined } // TODO make optional properties optional, not just nullable
@@ -71,5 +71,14 @@ describe('Field construction', () => {
         })
 
         expect(defaultedField).toHaveProperty('default', defaultString)
+    })
+
+    test('Nullable fields should append null to the type', () => {
+        const defaultedField = Field({
+            type: String(),
+            default: null
+        })
+
+        expect(defaultedField.type).toContain('null')
     })
 })
