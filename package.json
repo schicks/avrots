@@ -3,6 +3,11 @@
   "version": "0.0.1",
   "description": "A DSL for simultaneously constructing an avro schema and the corresponding typescript type. Inspired by pelotom/runtypes and joewood/avro-typescript.",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/schicks/avrots"
+  },
   "scripts": {
     "test": "jest",
     "build": "tsc",
@@ -19,14 +24,14 @@
     "preset": "ts-jest"
   },
   "devDependencies": {
+    "@types/jest": "^25.1.4",
+    "@types/node": "^14.6.0",
     "@types/ramda": "^0.27.3",
     "avsc": "^5.4.20",
     "jest": "^25.2.4",
+    "prettier": "^2.0.5",
     "ramda": "^0.27.0",
     "ts-jest": "^25.3.0",
     "typescript": "^3.8.3"
-  },
-  "dependencies": {
-    "@types/jest": "^25.1.4"
   }
 }

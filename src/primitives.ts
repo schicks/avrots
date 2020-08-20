@@ -15,10 +15,14 @@ const Int = (): Avro.Int => 'int' as Avro.Int
 type Long = Avro.Long
 const Long = (): Avro.Long => 'long' as Avro.Long
 
+type Double = Avro.Double
+const Double = (): Avro.Double => 'double' as Avro.Double
+
 export {
     String,
     Null,
     Boolean,
     Int,
     Long,
+    Double
 }
