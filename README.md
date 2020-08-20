@@ -13,10 +13,12 @@ const Toy = Record('toy', {
   name: Field(String())
 })
 
+const ToyArray = Array(Toy)
+
 const Person = Record('person', {
   name: Field({default: null, type: String()}),
-  ownToys: Field(Array(Toy)),
-  covetedToys: Field(Array(Named(Toy))) // reference named types from earlier in the schema, since avro doesn't like redundant names
+  ownToys: Field<typeof ToyArray>(ToyArray), // occasional disambiguation is still needed, but should be obvious
+  covetedToys: Field<typeof ToyArray>(Array(Named(Toy))) // reference named types from earlier in the schema, since avro doesn't like redundant names
 })
 ```
 
