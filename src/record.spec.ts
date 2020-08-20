@@ -11,8 +11,8 @@ let _ = () => {
   });
   type ActualType = AsTypescript<typeof instance>;
   type ExpectedType = { name: string; age: number };
-  const _actualIsExpected: ExpectedType = (null as unknown) as ActualType;
-  const _expectedIsActual: ActualType = (null as unknown) as ExpectedType;
+  const _actualIsExpected = (a: ActualType): ExpectedType => a;
+  const _expectedIsActual = (a: ExpectedType): ActualType => a;
 };
 
 // other records
@@ -22,7 +22,6 @@ _ = () => {
     age: Field(Long()),
   });
   const recordField = Field<typeof recordForField>(recordForField); // TODO improve refinement on record fields
-  recordField._ts
   const instance = Record("pet", {
     name: Field(String()),
     owner: recordField,
@@ -35,8 +34,8 @@ _ = () => {
       age: number;
     };
   };
-  const _actualIsExpected: ExpectedType = (null as unknown) as ActualType;
-  const _expectedIsActual: ActualType = (null as unknown) as ExpectedType;
+  const _actualIsExpected = (a: ActualType): ExpectedType => a;
+  const _expectedIsActual = (a: ExpectedType): ActualType => a;
 };
 
 //array fields
@@ -51,8 +50,8 @@ _ = () => {
     name: string;
     possessions: string[]
   };
-  const _actualIsExpected: ExpectedType = (null as unknown) as ActualType;
-  const _expectedIsActual: ActualType = (null as unknown) as ExpectedType;
+  const _actualIsExpected = (a: ActualType): ExpectedType => a;
+  const _expectedIsActual = (a: ExpectedType): ActualType => a;
 };
 
 // defaulted and nullable fields
@@ -66,8 +65,8 @@ _ = () => {
     name: string | null | undefined;
     age: number | null | undefined;
   }; // TODO make optional properties optional, not just nullable
-  const _actualIsExpected: ExpectedType = (null as unknown) as ActualType;
-  const _expectedIsActual: ActualType = (null as unknown) as ExpectedType;
+  const _actualIsExpected = (a: ActualType): ExpectedType => a;
+  const _expectedIsActual = (a: ExpectedType): ActualType => a;
 };
 
 describe("Field construction", () => {
