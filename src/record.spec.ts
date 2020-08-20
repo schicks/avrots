@@ -21,7 +21,7 @@ _ = () => {
     name: Field(String()),
     age: Field(Long()),
   });
-  const recordField = Field<typeof recordForField>(recordForField); // TODO improve refinement on record fields
+  const recordField = Field<typeof recordForField>(recordForField);
   const instance = Record("pet", {
     name: Field(String()),
     owner: recordField,
@@ -64,7 +64,7 @@ _ = () => {
   type ExpectedType = {
     name: string | null | undefined;
     age: number | null | undefined;
-  }; // TODO make optional properties optional, not just nullable
+  };
   const _actualIsExpected = (a: ActualType): ExpectedType => a;
   const _expectedIsActual = (a: ExpectedType): ActualType => a;
 };
