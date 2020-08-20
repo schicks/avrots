@@ -37,27 +37,27 @@ type ArrayType = {
 
 type UnionType = Type[] & { _ts: unknown };
 
-type RequiredField<T extends RequiredType> = {
+type RequiredField<T> = {
   type: T;
   doc?: string;
-  _ts: T["_ts"];
+  _ts: T;
 };
 
-type DefaultedField<T extends RequiredType> = {
+type DefaultedField<T> = {
   type: T;
   doc?: string;
-  default: T["_ts"];
-  _ts: T["_ts"] | null | undefined;
+  default: T;
+  _ts: T | null | undefined;
 };
 
-type NullableField<T extends RequiredType> = {
+type NullableField<T> = {
   type: T;
   doc?: string;
   default: null;
-  _ts: T["_ts"] | null | undefined;
+  _ts: T | null | undefined;
 };
 
-type Field<T extends RequiredType> =
+type Field<T> =
   | RequiredField<T>
   | NullableField<T>
   | DefaultedField<T>;
